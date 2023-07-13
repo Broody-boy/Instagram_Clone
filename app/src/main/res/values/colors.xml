@@ -6,5 +6,12 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="White">#FFFFFFFF</color>
+
+    <color name="instafirstcolor">#3c43e5</color>
+    <color name="instacentercolor">#d34267</color>
+    <color name="instalastcolor">#f6ac35</color>
+    <color name="statusbarcolor">#CECECE</color>
+    <color name="white">#ffff</color>
+    <color name="textcolor">#464646</color>
 </resources>
