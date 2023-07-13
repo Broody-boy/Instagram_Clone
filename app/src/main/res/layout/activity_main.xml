@@ -17,43 +17,47 @@
         android:elevation="6dp"
         android:layout_alignParentStart="true">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/imgcamera"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:padding="5dp"
-                app:srcCompat="@drawable/camera" />
+                app:srcCompat="@drawable/camera"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
-            <TextView
-                android:id="@+id/textView"
+            <ImageView
+                android:id="@+id/imageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_weight="1"
                 android:padding="5dp"
-                android:text="Instagram"
-                android:textColor="@color/textcolor"
-                android:textSize="25dp"
-                android:textStyle="bold" />
+                android:src="@drawable/instagram_logo"
+                app:layout_constraintStart_toEndOf="@id/imgcamera"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/imgInstatv"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:padding="5dp"
-                app:srcCompat="@drawable/instatv" />
+                app:srcCompat="@drawable/instatv"
+                app:layout_constraintEnd_toStartOf="@id/imgSend"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imgSend"
                 android:layout_width="40dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -61,9 +65,12 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
                 android:padding="5dp"
-                android:tint="@color/textcolor"
-                app:srcCompat="@drawable/send" />
-        </LinearLayout>
+                app:tint="@color/textcolor"
+                app:srcCompat="@drawable/send"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.Toolbar>
 
 
