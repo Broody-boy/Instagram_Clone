@@ -8,24 +8,17 @@
     android:orientation="vertical">
 
 
-    <LinearLayout
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="2dp">
+        android:layout_marginTop="4dp">
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <include layout="@layout/item_story" />
 
-            <include layout="@layout/item_story" />
-
-        </HorizontalScrollView>
-
-    </LinearLayout>
+    </HorizontalScrollView>
 
     <View
-        android:id="@+id/view"
+        android:id="@+id/separator"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:layout_marginTop="2dp"
