@@ -17,9 +17,9 @@
         android:title="Plus" />
 
     <item
-        android:id="@+id/heart"
-        android:icon="@drawable/heart"
-        android:title="Heart" />
+        android:id="@+id/reels"
+        android:icon="@drawable/reels"
+        android:title="Reels" />
 
     <item
         android:id="@+id/profile"

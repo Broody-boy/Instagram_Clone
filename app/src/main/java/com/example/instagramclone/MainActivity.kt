@@ -4,10 +4,6 @@ import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.example.instagramclone.databinding.ActivityMainBinding
 import com.example.instagramclone.ui.home.HomeFragment
 import com.example.instagramclone.ui.profile.ProfileFragment
@@ -23,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navView: BottomNavigationView = binding.navView
+        val navView: BottomNavigationView = binding.navViewBottom
         val homefragment = HomeFragment()
         val profilefragment = ProfileFragment()
         val searchfragment = SearchFragment()
@@ -47,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     private fun setFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
 
-            replace(R.id.nav_host_fragment_activity_main, fragment)
+            replace(R.id.fragment_holder, fragment)
             commit()
         }
     }
