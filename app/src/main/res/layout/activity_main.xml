@@ -97,7 +97,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/mobile_navigation"
         android:layout_below="@+id/toolbar"
         android:layout_above="@+id/nav_view"/>
 

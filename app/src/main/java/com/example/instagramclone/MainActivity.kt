@@ -3,11 +3,15 @@ package com.example.instagramclone
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.instagramclone.databinding.ActivityMainBinding
+import com.example.instagramclone.ui.home.HomeFragment
+import com.example.instagramclone.ui.profile.ProfileFragment
+import com.example.instagramclone.ui.search.SearchFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,16 +24,31 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val navView: BottomNavigationView = binding.navView
+        val homefragment = HomeFragment()
+        val profilefragment = ProfileFragment()
+        val searchfragment = SearchFragment()
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_search, R.id.navigation_profile
-            )
-        )
+        navView.setOnItemSelectedListener {
+            when(it.itemId){
+                R.id.home -> {
+                    setFragment(homefragment)
+                }
+                R.id.search -> {
+                    setFragment(searchfragment)
+                }
+                R.id.profile -> {
+                    setFragment(profilefragment)
+                }
+            }
+            true
+        }
+    }
 
-        navView.setupWithNavController(navController)
+    private fun setFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction().apply {
+
+            replace(R.id.nav_host_fragment_activity_main, fragment)
+            commit()
+        }
     }
 }
