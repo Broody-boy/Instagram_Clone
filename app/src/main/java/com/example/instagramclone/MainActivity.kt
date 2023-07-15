@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.instagramclone.databinding.ActivityMainBinding
 import com.example.instagramclone.ui.home.HomeFragment
 import com.example.instagramclone.ui.profile.ProfileFragment
-import com.example.instagramclone.ui.search.SearchFragment
+import com.example.instagramclone.ui.explore.ExploreFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navViewBottom
         val homefragment = HomeFragment()
         val profilefragment = ProfileFragment()
-        val searchfragment = SearchFragment()
+        val explorefragment = ExploreFragment()
 
         navView.setOnItemSelectedListener {
             when(it.itemId){
@@ -31,9 +31,9 @@ class MainActivity : AppCompatActivity() {
                     binding.toolbar.visibility = View.VISIBLE
                     setFragment(homefragment)
                 }
-                R.id.search -> {
+                R.id.explore -> {
                     binding.toolbar.visibility = View.GONE
-                    setFragment(searchfragment)
+                    setFragment(explorefragment)
                 }
                 R.id.reels -> {
                     binding.toolbar.visibility = View.GONE
@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
-
             replace(R.id.fragment_holder, fragment)
             commit()
         }
