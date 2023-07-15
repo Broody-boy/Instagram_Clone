@@ -83,7 +83,9 @@
         android:background="?android:attr/windowBackground"
         app:menu="@menu/bottom_nav_menu"
         android:layout_alignParentBottom="true"
-        app:labelVisibilityMode="unlabeled"/>
+        app:labelVisibilityMode="unlabeled"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"/>
 
     <fragment
         android:id="@+id/nav_host_fragment_activity_main"
