@@ -22,7 +22,7 @@
         android:title="Heart" />
 
     <item
-        android:id="@+id/Profile"
+        android:id="@+id/profile"
         android:icon="@drawable/user"
         android:title="Profile" />
 
