@@ -1,6 +1,7 @@
 package com.example.instagramclone
 
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -27,12 +28,18 @@ class MainActivity : AppCompatActivity() {
         navView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home -> {
+                    binding.toolbar.visibility = View.VISIBLE
                     setFragment(homefragment)
                 }
                 R.id.search -> {
+                    binding.toolbar.visibility = View.GONE
                     setFragment(searchfragment)
                 }
+                R.id.reels -> {
+                    binding.toolbar.visibility = View.GONE
+                }
                 R.id.profile -> {
+                    binding.toolbar.visibility = View.GONE
                     setFragment(profilefragment)
                 }
             }
