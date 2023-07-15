@@ -2,6 +2,7 @@ package com.example.instagramclone
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -35,8 +36,11 @@ class MainActivity : AppCompatActivity() {
                     binding.toolbar.visibility = View.GONE
                     setFragment(explorefragment)
                 }
+                R.id.plus -> {
+                    Toast.makeText(this, "Open a new post activity here",Toast.LENGTH_SHORT).show()
+                }
                 R.id.reels -> {
-                    binding.toolbar.visibility = View.GONE
+                    Toast.makeText(this, "No reels here yet",Toast.LENGTH_SHORT).show()
                 }
                 R.id.profile -> {
                     binding.toolbar.visibility = View.GONE
