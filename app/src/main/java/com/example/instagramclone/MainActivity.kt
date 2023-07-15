@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         val profilefragment = ProfileFragment()
         val explorefragment = ExploreFragment()
 
+        setFragment(homefragment)
+
         navView.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home -> {
