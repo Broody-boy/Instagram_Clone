@@ -3,12 +3,12 @@
 
     <item
         android:id="@+id/home"
-        android:icon="@drawable/home_black"
+        android:icon="@drawable/home_navbar_images_set"
         android:title="Home" />
 
     <item
         android:id="@+id/search"
-        android:icon="@drawable/search"
+        android:icon="@drawable/search_navbar_images_set"
         android:title="Search" />
 
     <item
