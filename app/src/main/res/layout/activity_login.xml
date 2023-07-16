@@ -1,9 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.Login">
+    tools:context=".activities.Login"
+    android:background="@drawable/gradient"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:id="@+id/viewUpperHalf"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/instagram"/>
+
+        <EditText
+            android:id="@+id/etEmailNumber"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="5dp"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:hint="Username, email or mobile number"
+            android:ellipsize="end"
+            android:textColorHint="#a3aeb4"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:textSize="17sp"
+            android:background="@drawable/login_et_background_selector"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/viewBottomHalf"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="5dp"
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:hint="Password"
+            android:ellipsize="end"
+            android:textColorHint="#a3aeb4"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:textSize="17sp"
+            android:background="@drawable/login_et_background_selector"/>
+
+        <Button
+            android:id="@+id/btnLogIn"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/etPassword"
+            android:text="Log in"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:background="@drawable/login_button_background_selector"/>
+
+        <TextView
+            android:id="@+id/tvForgotPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/btnLogIn"
+            android:layout_marginTop="15dp"
+            android:text="Forgot Password?"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/btnCreateNewAccountRedirect"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="50dp"
+            android:layout_alignParentBottom="true"
+            android:text="Create New Account"
+            android:textAllCaps="false"
+            android:textColor="#0064e0"
+            android:textSize="17sp"
+            android:background="@drawable/redirect_button_background"/>
+    </RelativeLayout>
+
+</LinearLayout>
