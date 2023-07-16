@@ -8,7 +8,7 @@
     android:background="@drawable/gradient"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/viewUpperHalf"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -17,14 +17,17 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:src="@drawable/instagram"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/etEmailNumber"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/instagram" />
 
         <EditText
             android:id="@+id/etEmailNumber"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:layout_alignParentBottom="true"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginStart="15dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="5dp"
@@ -37,7 +40,7 @@
             android:paddingRight="15dp"
             android:textSize="17sp"
             android:background="@drawable/login_et_background_selector"/>
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <RelativeLayout
         android:id="@+id/viewBottomHalf"
