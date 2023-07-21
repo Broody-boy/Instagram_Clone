@@ -51,7 +51,7 @@
             android:layout_marginBottom="5dp"
             android:inputType="text"
             android:textColor="@color/black"
-            android:hint="Username, email or mobile number"
+            android:hint="Email or mobile number"
             android:ellipsize="end"
             android:textColorHint="#a3aeb4"
             android:paddingLeft="15dp"
