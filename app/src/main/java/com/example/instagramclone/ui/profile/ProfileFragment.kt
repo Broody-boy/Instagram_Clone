@@ -72,8 +72,8 @@ class ProfileFragment : Fragment() {
         storageRef = storage.reference
 
 
-        binding.imgSettings.setOnClickListener {
-
+        binding.imgOptionsMenu.setOnClickListener {
+            //add menu here and within that, signout
             fbauth.signOut()
             val intent = Intent(requireContext(), Login::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK //clear call stack
