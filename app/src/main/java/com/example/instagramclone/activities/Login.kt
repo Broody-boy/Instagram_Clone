@@ -32,6 +32,7 @@ class Login : AppCompatActivity() {
 
         if (auth.currentUser!=null) {
             startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
 
         pd = ProgressDialog(this)
@@ -55,6 +56,7 @@ class Login : AppCompatActivity() {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { SignInTask->
             if (SignInTask.isSuccessful) {
                 startActivity(Intent(this, MainActivity::class.java))
+                finish()
                 Toast.makeText(this, "Sign In successful!", Toast.LENGTH_SHORT).show()
                 pd.dismiss()
             }
