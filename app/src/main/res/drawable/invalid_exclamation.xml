@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <layer-list>
+            <item android:drawable="@drawable/error_exclamation"
+                android:height="24dp" android:width="24dp"/>
+        </layer-list>
+    </item>
+</selector>
