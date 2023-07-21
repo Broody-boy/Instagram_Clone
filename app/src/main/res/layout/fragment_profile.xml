@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.profile.ProfileFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -11,9 +8,40 @@
             type="com.example.instagramclone.mvvm.ViewModel" />
     </data>
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Profile" />
+        tools:context=".ui.profile.ProfileFragment">
 
+        <ImageView
+            android:id="@+id/imgSettings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Profile" />
+
+        <ImageView
+            android:id="@+id/imgAddFriends"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Profile" />
+
+        <ImageView
+            android:id="@+id/imgAddPost"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Profile" />
+
+        <ImageView
+            android:id="@+id/imgProfile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Profile" />
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Profile" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
