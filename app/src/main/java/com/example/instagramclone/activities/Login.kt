@@ -37,13 +37,13 @@ class Login : AppCompatActivity() {
         pd = ProgressDialog(this)
 
         binding.btnLogIn.setOnClickListener {
-            if (binding.etEmailNumber.text.isNotEmpty() && binding.etPassword.text.isNotEmpty()) {
-                val email = binding.etEmailNumber.text.toString()
+            if (binding.etEmailNumberUserName.text.isNotEmpty() && binding.etPassword.text.isNotEmpty()) {
+                val email = binding.etEmailNumberUserName.text.toString()
                 val password = binding.etPassword.text.toString()
 
                 signIn(email, password)
             }
-            else if (binding.etEmailNumber.text.isEmpty() || binding.etPassword.text.isEmpty()) {
+            else if (binding.etEmailNumberUserName.text.isEmpty() || binding.etPassword.text.isEmpty()) {
                 Toast.makeText(this, "All fields are required!", Toast.LENGTH_SHORT).show()
             }
         }
