@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.instagramclone.Utils
+import com.example.instagramclone.modal.Feed
 import com.example.instagramclone.modal.Posts
 import com.example.instagramclone.modal.Users
 import com.google.firebase.firestore.FirebaseFirestore
@@ -61,5 +62,70 @@ class ViewModel : ViewModel() {
             }
         }
         return posts
+    }
+
+    fun loadMyFeed():LiveData<List<Feed>>{
+        val firestore = FirebaseFirestore.getInstance()
+        val feeds = MutableLiveData<List<Feed>>()
+        viewModelScope.launch(Dispatchers.IO) {
+
+
+                getThePeopleIFollow {list ->
+
+                    try {
+
+                        firestore.collection("Posts").whereIn("userid",list).addSnapshotListener { value, error ->
+
+                            if (error != null){
+                                return@addSnapshotListener
+                            }
+
+                            val feed = mutableListOf<Feed>()
+                            value?.documents?.forEach{ documentSnapshot ->
+                                val pmodal = documentSnapshot.toObject(Feed::class.java)
+                                pmodal?.let {
+                                    feed.add(it)
+                                }
+
+                            }
+                            val sortedFeed = feed.sortedByDescending { it.time }
+                            feeds.postValue(sortedFeed)
+
+
+                        }
+
+                    }catch (e : Exception){
+
+                    }
+
+
+                }
+
+        }
+
+        return feeds
+
+    }
+
+    fun getThePeopleIFollow(callback : (List<String>) -> Unit){
+
+        val firestore = FirebaseFirestore.getInstance()
+        val ifollowlist = mutableListOf<String>()
+        ifollowlist.add(Utils.getUidLoggedIn())
+        firestore.collection("Follow").document(Utils.getUidLoggedIn()).get().addOnSuccessListener{ docsnap ->
+
+            if(docsnap.exists()){
+                val followingids = docsnap.get("following_id") as? List<String>
+                val updateList = followingids?.toMutableList()?: mutableListOf()
+                ifollowlist.add(updateList.toString())
+
+                callback(ifollowlist)
+
+            }else{
+
+                callback(ifollowlist)
+            }
+        }
+
     }
 }
