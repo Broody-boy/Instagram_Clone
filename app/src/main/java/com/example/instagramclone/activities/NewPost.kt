@@ -44,6 +44,9 @@ class NewPost : AppCompatActivity() {
     var imageUserPoster: String = ""
     var nameUserPoster: String = ""
 
+    //On start of activity, hasOpenedBefore is false. Upon the first dismissal of the dialog box, set to true as next time the dialog box will surely have been opened once.
+    var hasOpenedBefore = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Inflate the layout for this fragment
@@ -86,6 +89,8 @@ class NewPost : AppCompatActivity() {
 
         dialog.findViewById<Button>(R.id.btnCancel).setOnClickListener {
             dialog.dismiss()
+            if(!hasOpenedBefore)
+                finish()    //In starting itself, if person presses cancel, return back to previous activity
         }
 
         dialog.findViewById<LinearLayout>(R.id.layoutTakePicture).setOnClickListener {
@@ -95,6 +100,11 @@ class NewPost : AppCompatActivity() {
         dialog.findViewById<ConstraintLayout>(R.id.layoutSelectFromGallery).setOnClickListener {
             Toast.makeText(this, "Gallery", Toast.LENGTH_SHORT).show()
         }
+
+        dialog.setOnDismissListener {
+            hasOpenedBefore = true  //See description at declaration
+        }
+
         dialog.show()
     }
 
