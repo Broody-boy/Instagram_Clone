@@ -2,15 +2,20 @@ package com.example.instagramclone.activities
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.Dialog
 import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -44,6 +49,9 @@ class NewPost : AppCompatActivity() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.setContentView(this, R.layout.activity_new_post)
 
+        //On start of activity, show image choosing options
+        showImageSelectionOptionDialog()
+
         vm = ViewModelProvider(this).get(ViewModel::class.java)
         postid = UUID.randomUUID().toString()
         binding.lifecycleOwner = this
@@ -69,6 +77,25 @@ class NewPost : AppCompatActivity() {
             firestore.collection("Posts").document(postid).update("caption", capti)
             finish()
         }
+    }
+
+    private fun showImageSelectionOptionDialog() {
+        val dialog = Dialog(this)
+        dialog.setContentView(R.layout.custom_dialog_select_image_options)
+        dialog.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+
+        dialog.findViewById<Button>(R.id.btnCancel).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.findViewById<LinearLayout>(R.id.layoutTakePicture).setOnClickListener {
+            Toast.makeText(this, "Camera", Toast.LENGTH_SHORT).show()
+        }
+
+        dialog.findViewById<ConstraintLayout>(R.id.layoutSelectFromGallery).setOnClickListener {
+            Toast.makeText(this, "Gallery", Toast.LENGTH_SHORT).show()
+        }
+        dialog.show()
     }
 
     private fun addPostDialog() {
