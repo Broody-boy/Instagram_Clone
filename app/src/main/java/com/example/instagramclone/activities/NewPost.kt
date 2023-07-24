@@ -13,7 +13,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
@@ -26,6 +25,7 @@ import com.example.instagramclone.mvvm.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import jp.wasabeef.blurry.Blurry
 import java.io.ByteArrayOutputStream
 import java.util.UUID
 
@@ -72,7 +72,7 @@ class NewPost : AppCompatActivity() {
         })
 
         binding.imgImageToPost.setOnClickListener {
-            addPostDialog()
+            showImageSelectionOptionDialog()
         }
 
         binding.btnPost.setOnClickListener {
@@ -94,11 +94,13 @@ class NewPost : AppCompatActivity() {
         }
 
         dialog.findViewById<LinearLayout>(R.id.layoutTakePicture).setOnClickListener {
-            Toast.makeText(this, "Camera", Toast.LENGTH_SHORT).show()
+            takePhotoWithCamera()
+            dialog.dismiss()
         }
 
         dialog.findViewById<ConstraintLayout>(R.id.layoutSelectFromGallery).setOnClickListener {
-            Toast.makeText(this, "Gallery", Toast.LENGTH_SHORT).show()
+            pickImageFromGallery()
+            dialog.dismiss()
         }
 
         dialog.setOnDismissListener {
@@ -108,23 +110,6 @@ class NewPost : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun addPostDialog() {
-        val options = arrayOf<CharSequence>("Take Photo", "Choose from Gallery", "Cancel")
-        val builder = AlertDialog.Builder(this)
-        builder.setTitle("Choose your profile picture")
-        builder.setItems(options) { dialog, item ->
-            when {
-                options[item] == "Take Photo" -> {
-                    takePhotoWithCamera()
-                }
-                options[item] == "Choose from Gallery" -> {
-                    pickImageFromGallery()
-                }
-                options[item] == "Cancel" -> dialog.dismiss()
-            }
-        }
-        builder.show()
-    }
 
     @SuppressLint("QueryPermissionsNeeded")
     private fun pickImageFromGallery() {
@@ -164,6 +149,7 @@ class NewPost : AppCompatActivity() {
         val data = baos.toByteArray()
         bitmap = imageBitmap!!
         binding.imgImageToPost.setImageBitmap(imageBitmap)
+        Blurry.with(this).from(bitmap).into(binding.imgBackBlur)
         val storagePath = storageRef.child("Photos/${UUID.randomUUID()}.jpg")
         val uploadTask = storagePath.putBytes(data)
 
