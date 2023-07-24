@@ -115,6 +115,8 @@ class ProfileFragment : Fragment() {
             //Glide.with(requireContext()).load(it).into(BottomNavBar.imgProfile)
         })
 
+
+
         vm.getMyPosts().observe(viewLifecycleOwner, Observer {
             //binding.postsCountText.setText(it.size.toString())
             //adapter.setPostList(it)
