@@ -69,11 +69,9 @@ class UserName : AppCompatActivity() {
                 pd.dismiss()
                 Toast.makeText(this, "Sign Up successful!", Toast.LENGTH_SHORT).show()
 
-                val intent = Intent(this, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                val intent = Intent(this, ChooseProfileImage::class.java)
+                intent.putExtra("username", binding.etUserName.text.toString())
                 startActivity(intent)
-                finish()
-
             }
         }.addOnFailureListener {
             pd.dismiss()

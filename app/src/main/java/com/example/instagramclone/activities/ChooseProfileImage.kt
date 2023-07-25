@@ -40,6 +40,8 @@ class ChooseProfileImage : AppCompatActivity() {
         binding = ActivityChooseProfileImageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.tvUserName.text = intent.getStringExtra("username")
+
         vm = ViewModelProvider(this).get(ViewModel::class.java)
         firestore = FirebaseFirestore.getInstance()
         storage = FirebaseStorage.getInstance()
@@ -53,9 +55,9 @@ class ChooseProfileImage : AppCompatActivity() {
 
         binding.btnNext.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK //clear call stack
             startActivity(intent)
-            finish()
+            finish()                                                                        //clear current activity
         }
 
     }
@@ -127,7 +129,7 @@ class ChooseProfileImage : AppCompatActivity() {
             val task = it.metadata?.reference?.downloadUrl
             task?.addOnSuccessListener {
                 uri = it
-                firestore.collection("Users").document(Utils.getUidLoggedIn()).update("image", uri.toString())
+                firestore.collection("Users").document(Utils.getUidLoggedIn()).update("profile_image", uri.toString())
                 vm.image.value = uri.toString()
             }
             Toast.makeText(this, "Image uploaded successfully!", Toast.LENGTH_SHORT).show()
