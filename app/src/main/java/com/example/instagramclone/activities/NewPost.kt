@@ -18,6 +18,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.example.instagramclone.R
 import com.example.instagramclone.Utils
 import com.example.instagramclone.databinding.ActivityNewPostBinding
@@ -44,8 +45,8 @@ class NewPost : AppCompatActivity() {
     var imageUserPoster: String = ""
     var nameUserPoster: String = ""
 
-    //On start of activity, hasOpenedBefore is false. Upon the first dismissal of the dialog box, set to true as next time the dialog box will surely have been opened once.
-    var hasOpenedBefore = false
+    //On start of activity, freshActivityOpened is true. Upon the first dismissal of the dialog box, set to false as next time the dialog box will surely have been opened once.
+    var freshActivityOpened = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,6 +70,7 @@ class NewPost : AppCompatActivity() {
 
         vm.image.observe(this, Observer {
             imageUserPoster = it!!
+            Glide.with(this).load(it).into(binding.imgProfileUser)
         })
 
         binding.imgImageToPost.setOnClickListener {
@@ -89,7 +91,7 @@ class NewPost : AppCompatActivity() {
 
         dialog.findViewById<Button>(R.id.btnCancel).setOnClickListener {
             dialog.dismiss()
-            if(!hasOpenedBefore)
+            if(freshActivityOpened)
                 finish()    //In starting itself, if person presses cancel, return back to previous activity
         }
 
@@ -104,7 +106,7 @@ class NewPost : AppCompatActivity() {
         }
 
         dialog.setOnDismissListener {
-            hasOpenedBefore = true  //See description at declaration
+            freshActivityOpened = false  //See description at declaration
         }
 
         dialog.show()

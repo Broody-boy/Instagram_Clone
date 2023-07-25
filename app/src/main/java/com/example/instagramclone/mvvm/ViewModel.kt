@@ -30,7 +30,7 @@ class ViewModel : ViewModel() {
             if (value!!.exists() && value!=null) {
                 val users = value.toObject(Users::class.java)
                 name.value = users!!.username!!
-                image.value = users!!.image!!
+                image.value = users!!.profile_image!!
                 followers.value = users!!.followers!!.toString()
                 following.value = users!!.following!!.toString()
             }
