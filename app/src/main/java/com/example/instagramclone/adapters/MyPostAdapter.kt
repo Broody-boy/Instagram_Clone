@@ -1,21 +1,22 @@
 package com.example.instagramclone.adapters
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.instagramclone.R
+import com.example.instagramclone.databinding.ItemMypostBinding
 import com.example.instagramclone.modal.Posts
 
 class MyPostAdapter : RecyclerView.Adapter<PostHolder>() {
 
     var mypostlist = listOf<Posts>()
+    lateinit var binding : ItemMypostBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_myPost, parent, false)
-        return PostHolder(view)
+        //val view = LayoutInflater.from(parent.context).inflate(R.layout.item_mypost, parent, false)
+        binding = ItemMypostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return PostHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -34,8 +35,8 @@ class MyPostAdapter : RecyclerView.Adapter<PostHolder>() {
     }
 }
 
-class PostHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    val image: ImageView = itemView.findViewById(R.id.imgPostImage)
+class PostHolder(binding: ItemMypostBinding) : RecyclerView.ViewHolder(binding.root) {
+    val image: ImageView = binding.imgMyPost
 }
 
 class MyDiffCallback(
