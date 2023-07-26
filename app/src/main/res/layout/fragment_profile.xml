@@ -205,6 +205,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/layoutEditShareFriend"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -250,5 +251,13 @@
                 android:layout_margin="4dp"/>
 
         </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerMyPosts"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@id/layoutEditShareFriend"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="3dp"/>
     </RelativeLayout>
 </layout>
