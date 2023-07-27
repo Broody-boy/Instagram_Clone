@@ -171,7 +171,7 @@ class NewPost : AppCompatActivity() {
         val likers = ArrayList<String>() // Create an empty ArrayList as the initial value
 
         val hashMap = hashMapOf<Any, Any>("image" to uri.toString(), "postid" to postid, "userid" to Utils.getUidLoggedIn(), "likers" to likers,
-            "time" to Utils.getTime().toString(), "caption" to "default", "likes" to 0,
+            "time" to Utils.getTime(), "caption" to "default", "likes" to 0,
             "username" to nameUserPoster, "imageposter" to imageUserPoster)
 
         firestore.collection("Posts").document(postid).set(hashMap)
