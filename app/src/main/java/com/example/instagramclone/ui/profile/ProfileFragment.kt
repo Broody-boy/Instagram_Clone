@@ -83,8 +83,12 @@ class ProfileFragment : Fragment() {
         binding.recyclerMyPosts.adapter = adapter
         binding.recyclerMyPosts.layoutManager = GridLayoutManager(requireContext(), 3)
 
-        vm.name.observe(viewLifecycleOwner, Observer {
+        vm.username.observe(viewLifecycleOwner, Observer {
             binding.tvUserName.text = it!!
+        })
+
+        vm.name.observe(viewLifecycleOwner, Observer {
+            binding.tvName.text = it!!
         })
 
         vm.image.observe(viewLifecycleOwner, Observer {

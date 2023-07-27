@@ -13,6 +13,7 @@ import kotlinx.coroutines.launch
 
 class ViewModel : ViewModel() {
     val name = MutableLiveData<String>()
+    val username = MutableLiveData<String>()
     val image = MutableLiveData<String>()
     val followers = MutableLiveData<String>()
     val following = MutableLiveData<String>()
@@ -29,7 +30,8 @@ class ViewModel : ViewModel() {
             }
             if (value!!.exists() && value!=null) {
                 val users = value.toObject(Users::class.java)
-                name.value = users!!.username!!
+                name.value = users!!.name!!
+                username.value = users!!.username!!
                 image.value = users!!.profile_image!!
                 followers.value = users!!.followers!!.toString()
                 following.value = users!!.following!!.toString()

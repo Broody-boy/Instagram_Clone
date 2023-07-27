@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:padding="5dp"
-                    android:text="@{viewModel.name}"
+                    android:text="Arshdeep_Singh"
                     android:textSize="18dp"
                     android:textStyle="bold"
                     android:textColor="@color/black"
