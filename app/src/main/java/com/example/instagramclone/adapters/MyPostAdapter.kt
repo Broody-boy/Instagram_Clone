@@ -35,7 +35,7 @@ class MyPostAdapter : RecyclerView.Adapter<PostHolder>() {
     }
 }
 
-class PostHolder(binding: ItemMypostBinding) : RecyclerView.ViewHolder(binding.root) {
+class PostHolder(val binding: ItemMypostBinding) : RecyclerView.ViewHolder(binding.root) {
     val image: ImageView = binding.imgMyPost
 }
 
