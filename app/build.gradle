@@ -67,4 +67,7 @@ dependencies {
 
     //Blurry library:
     implementation 'jp.wasabeef:blurry:4.0.1'
+
+    //Swipe refresh
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
 }
