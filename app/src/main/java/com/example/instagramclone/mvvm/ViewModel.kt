@@ -24,7 +24,8 @@ class ViewModel : ViewModel() {
 
     fun getCurrentUser() = viewModelScope.launch(Dispatchers.IO) {
         val firestore = FirebaseFirestore.getInstance()
-        firestore.collection("Users").document(Utils.getUidLoggedIn()).addSnapshotListener {value, error ->
+        firestore.collection("Users").document(Utils.getUidLoggedIn())
+            .addSnapshotListener {value, error ->
             if (error!=null) {
                 return@addSnapshotListener
             }
@@ -63,5 +64,29 @@ class ViewModel : ViewModel() {
             }
         }
         return posts
+    }
+
+    //get all users except the current user
+    fun getAllUsers() : LiveData<List<Users>>{
+        val users = MutableLiveData<List<Users>>()
+        val firestore = FirebaseFirestore.getInstance()
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                firestore.collection("Users").whereNotEqualTo("userid", Utils.getUidLoggedIn())
+                    .addSnapshotListener {snapshot, exception ->
+                        if (exception!=null) {
+                            // Handle the exception here
+                            return@addSnapshotListener
+                        }
+                        val userList = snapshot?.documents?.mapNotNull {
+                            it.toObject(Users::class.java)
+                        }
+                        users.postValue(userList!!)
+                    }
+            } catch (e: Exception) {
+                // handle exception
+            }
+        }
+        return users
     }
 }

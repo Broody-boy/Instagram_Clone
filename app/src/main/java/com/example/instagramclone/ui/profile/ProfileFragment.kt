@@ -30,6 +30,7 @@ import com.bumptech.glide.Glide
 import com.example.instagramclone.R
 import com.example.instagramclone.activities.Login
 import com.example.instagramclone.Utils
+import com.example.instagramclone.activities.AddFriend
 import com.example.instagramclone.adapters.MyPostAdapter
 import com.example.instagramclone.databinding.FragmentProfileBinding
 import com.example.instagramclone.mvvm.ViewModel
@@ -96,6 +97,14 @@ class ProfileFragment : Fragment() {
             //Glide.with(requireContext()).load(it).into(BottomNavBar.imgProfile)
         })
 
+        vm.followers.observe(viewLifecycleOwner, Observer {
+            binding.tvFollowerCount.text = it!!
+        })
+
+        vm.following.observe(viewLifecycleOwner, Observer {
+            binding.tvFollowingCount.text = it!!
+        })
+
         vm.getMyPosts().observe(viewLifecycleOwner, Observer {
             binding.tvPostCount.text = it.size.toString()
             adapter.setPostList(it)
@@ -127,7 +136,8 @@ class ProfileFragment : Fragment() {
         }
 
         binding.btnAddFriends.setOnClickListener {
-            //implement followers, following fragment
+            val intent = Intent(requireContext(), AddFriend::class.java)
+            startActivity(intent)
         }
     }
 }
