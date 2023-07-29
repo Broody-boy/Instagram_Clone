@@ -6,12 +6,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.instagramclone.adapters.AddFriendAdapter
-import com.example.instagramclone.adapters.OnFriendClicked
 import com.example.instagramclone.databinding.ActivityAddFriendBinding
 import com.example.instagramclone.modal.Users
 import com.example.instagramclone.mvvm.ViewModel
 
-class AddFriend : AppCompatActivity(), OnFriendClicked {
+class AddFriend : AppCompatActivity() {
     private lateinit var binding: ActivityAddFriendBinding
     private lateinit var vm: ViewModel
     private lateinit var adapter : AddFriendAdapter
@@ -45,10 +44,5 @@ class AddFriend : AppCompatActivity(), OnFriendClicked {
             finish()
         }
 
-        adapter.setListener(this)
-    }
-
-    override fun onFriendListener(position: Int, users: Users) {
-        //implement something
     }
 }

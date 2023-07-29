@@ -19,7 +19,6 @@ class AddFriendAdapter : RecyclerView.Adapter<UserHolder>() {
     var follower_id = ""
     var following_id = ""
     var following_count: Int = 0
-    private var listener: OnFriendClicked? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserHolder {
         binding = ItemFriendListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -143,9 +142,7 @@ class AddFriendAdapter : RecyclerView.Adapter<UserHolder>() {
         diffResult.dispatchUpdatesTo(this)
     }
 
-    fun setListener(listener: OnFriendClicked) {
-        this.listener = listener
-    }
+
 }
 
 class UserHolder(val binding: ItemFriendListBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -170,8 +167,4 @@ class UserDiffCallback(
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         return oldList[oldItemPosition] == newList[newItemPosition]
     }
-}
-
-interface OnFriendClicked {
-    fun onFriendListener(position: Int, users: Users)
 }
