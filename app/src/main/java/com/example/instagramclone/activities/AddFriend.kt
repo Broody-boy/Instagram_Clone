@@ -12,33 +12,36 @@ import com.example.instagramclone.modal.Users
 import com.example.instagramclone.mvvm.ViewModel
 
 class AddFriend : AppCompatActivity(), OnFriendClicked {
-    lateinit var binding: ActivityAddFriendBinding
-    lateinit var vm: ViewModel
+    private lateinit var binding: ActivityAddFriendBinding
+    private lateinit var vm: ViewModel
     private lateinit var adapter : AddFriendAdapter
-    private var list: List<Users> = emptyList()
+    private var list: List<Users> = emptyList()     //this variable 'list' will be used to hold the list of users returned by getAllUsers()
     var firstTime: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddFriendBinding.inflate(layoutInflater)
-        vm = ViewModelProvider(this).get(ViewModel::class.java)
         setContentView(binding.root)
+
+        vm = ViewModelProvider(this).get(ViewModel::class.java)
         adapter = AddFriendAdapter()
+        binding.recyclerUserList.adapter = adapter
+        binding.recyclerUserList.layoutManager = LinearLayoutManager(this)
+
         vm.getAllUsers().observe(this, Observer {
-            list = it
-            if(firstTime) {
-                adapter.setUsersList(it)
+            list = it                               //see description in declaration
+            if(firstTime) {                         //As soon as the data is fetched for the first time,
+                adapter.setUsersList(it)            //send it to the adapter of the recyclerView
                 firstTime = false
             }
         })
+
         binding.swipeRefresh.setOnRefreshListener {
             adapter.setUsersList(list)
             binding.swipeRefresh.isRefreshing = false
         }
-        binding.recyclerUserList.adapter = adapter
-        binding.recyclerUserList.layoutManager = LinearLayoutManager(this)
 
-        binding.imgPrevious.setOnClickListener {
+        binding.imgBack.setOnClickListener {
             finish()
         }
 
