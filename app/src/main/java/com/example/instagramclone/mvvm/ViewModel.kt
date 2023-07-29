@@ -51,16 +51,16 @@ class ViewModel : ViewModel() {
                             // Handle the exception here
                             return@addSnapshotListener
                         }
-                        val postList = snapshot?.documents?.mapNotNull {
-                            it.toObject(Posts::class.java)
-                        }
+                        val postList = snapshot?.documents?.mapNotNull {    //mapNotNull is used to convert the list of Firestore documents into a list of Posts objects.
+                            it.toObject(Posts::class.java)                                  //Here, mapNotNull is a higher-order function applied to the list of documents.
+                        }                                                                   //For each document in the list, the lambda function inside mapNotNull is executed.
                             //show latest post
                             ?.sortedByDescending { it.time
                             }
-                        posts.postValue(postList!!) // Switch back to the main thread
+                        posts.postValue(postList!!) //Set the value of posts to the postList. This is done using postValue() instead of directly setting the value to ensure it happens on the main (UI) thread, as LiveData is usually used for UI observation.
                     }
             } catch (e: Exception) {
-                // Handle any exceptions that occur during the Firestore operation
+                // handle exception
             }
         }
         return posts
@@ -78,10 +78,10 @@ class ViewModel : ViewModel() {
                             // Handle the exception here
                             return@addSnapshotListener
                         }
-                        val userList = snapshot?.documents?.mapNotNull {
-                            it.toObject(Users::class.java)
-                        }
-                        users.postValue(userList!!)
+                        val userList = snapshot?.documents?.mapNotNull {    //mapNotNull is used to convert the list of Firestore documents into a list of Users objects.
+                            it.toObject(Users::class.java)                                  //Here, mapNotNull is a higher-order function applied to the list of documents.
+                        }                                                                   //For each document in the list, the lambda function inside mapNotNull is executed.
+                        users.postValue(userList!!) //Set the value of users to the userList. This is done using postValue() instead of directly setting the value to ensure it happens on the main (UI) thread, as LiveData is usually used for UI observation.
                     }
             } catch (e: Exception) {
                 // handle exception
