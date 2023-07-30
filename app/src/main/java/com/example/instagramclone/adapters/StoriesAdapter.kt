@@ -34,6 +34,8 @@ class StoriesAdapter : RecyclerView.Adapter<StoryViewHolder>() {
         holder.itemView.setOnClickListener {
             val intent = Intent(holder.itemView.context, StoryViewPopupActivity::class.java)
             intent.putExtra("links", ArrayList(currentStory.stories_array))
+            intent.putExtra("profimg", currentStory.imageposter)
+            intent.putExtra("usrnm", currentStory.username)
             holder.itemView.context.startActivity(intent)
         }
     }

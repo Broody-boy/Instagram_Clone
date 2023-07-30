@@ -3,6 +3,7 @@ package com.example.instagramclone.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.WindowManager
 import com.bumptech.glide.Glide
 import com.example.instagramclone.R
@@ -13,6 +14,8 @@ class StoryViewPopupActivity : AppCompatActivity() {
     private lateinit var binding : ActivityStoryViewPopupBinding
     private var currstoryidx = 0
     private lateinit var storyLinksList : ArrayList<String>
+    private var profimg : String? = null
+    private var usrnm : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +25,8 @@ class StoryViewPopupActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         storyLinksList = (intent.getSerializableExtra("links") as? ArrayList<String>)!!
+        profimg = intent.getStringExtra("profimg")
+        usrnm = intent.getStringExtra("usrnm")
 
         val wdw = this.window
         wdw.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
