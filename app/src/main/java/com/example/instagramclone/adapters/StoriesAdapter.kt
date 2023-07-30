@@ -1,5 +1,6 @@
 package com.example.instagramclone.adapters
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.instagramclone.activities.StoryViewPopupActivity
 import com.example.instagramclone.databinding.ItemStoryBinding
 import com.example.instagramclone.modal.Story
 
@@ -28,6 +30,12 @@ class StoriesAdapter : RecyclerView.Adapter<StoryViewHolder>() {
         val currentStory = storylist[position]
         Glide.with(holder.itemView.context).load(currentStory.imageposter).into(holder.image)
         holder.tvusername.text = currentStory.username
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(holder.itemView.context, StoryViewPopupActivity::class.java)
+            intent.putExtra("links", ArrayList(currentStory.stories_array))
+            holder.itemView.context.startActivity(intent)
+        }
     }
 
     fun setStories(list: List<Story>) {
