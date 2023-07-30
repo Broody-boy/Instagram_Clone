@@ -7,7 +7,7 @@ import android.widget.Toast
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.instagramclone.activities.NewPost
+import com.example.instagramclone.activities.NewPostStory
 import com.example.instagramclone.databinding.ActivityMainBinding
 import com.example.instagramclone.ui.home.HomeFragment
 import com.example.instagramclone.ui.profile.ProfileFragment
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                     setFragment(explorefragment)
                 }
                 R.id.plus -> {
-                    val intent = Intent(this, NewPost::class.java)
+                    val intent = Intent(this, NewPostStory::class.java)
                     startActivity(intent)
                 }
                 R.id.reels -> {

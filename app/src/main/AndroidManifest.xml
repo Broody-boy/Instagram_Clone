@@ -24,7 +24,7 @@
             android:name=".activities.ChooseProfileImage"
             android:exported="false" />
         <activity
-            android:name=".activities.NewPost"
+            android:name=".activities.NewPostStory"
             android:exported="false" />
         <activity
             android:name=".activities.UserName"
