@@ -21,7 +21,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.instagramclone.R
 import com.example.instagramclone.Utils
-import com.example.instagramclone.databinding.ActivityNewPostBinding
+import com.example.instagramclone.databinding.ActivityNewPostStoryBinding
 import com.example.instagramclone.mvvm.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -30,9 +30,9 @@ import jp.wasabeef.blurry.Blurry
 import java.io.ByteArrayOutputStream
 import java.util.UUID
 
-class NewPost : AppCompatActivity() {
+class NewPostStory : AppCompatActivity() {
 
-    private lateinit var binding : ActivityNewPostBinding
+    private lateinit var binding : ActivityNewPostStoryBinding
     private lateinit var pd: ProgressDialog
     private lateinit var vm : ViewModel
     private lateinit var storageRef: StorageReference
@@ -51,7 +51,7 @@ class NewPost : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_new_post)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_new_post_story)
 
         //On start of activity, show image choosing options
         showImageSelectionOptionDialog()
