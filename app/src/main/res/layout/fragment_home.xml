@@ -13,7 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp">
 
-        <include layout="@layout/item_story" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerStories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
     </HorizontalScrollView>
 
