@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.instagramclone.Utils
 import com.example.instagramclone.modal.Posts
+import com.example.instagramclone.modal.Story
 import com.example.instagramclone.modal.Users
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.Dispatchers
@@ -89,6 +90,36 @@ class ViewModel : ViewModel() {
             }
         }
         return users
+    }
+
+    fun loadStories(): LiveData<List<Story>> {
+        val firestore = FirebaseFirestore.getInstance()
+        val stories = MutableLiveData<List<Story>>()
+
+        viewModelScope.launch(Dispatchers.IO) {
+            getThePeopleIFollow { list ->
+                try{
+                    firestore.collection("Stories").whereIn("userid", list).addSnapshotListener { value, error ->
+                        if (error != null) {
+                            return@addSnapshotListener
+                        }
+
+                        val story = mutableListOf<Story>()
+                        value?.documents?.forEach { documentSnapshot ->
+                            val pModal = documentSnapshot.toObject(Story::class.java)
+                            pModal?.let {
+                                story.add(it)
+                            }
+                        }
+
+                        val sortedStory = story.sortedByDescending { it.time }
+                        stories.postValue(sortedStory)
+                    }
+                }catch (e:Exception){
+                }
+            }
+        }
+        return stories
     }
 
     // get the ids of those who I follow:
