@@ -45,9 +45,6 @@ class NewPostStory : AppCompatActivity() {
     var imageUserPoster: String = ""
     var nameUserPoster: String = ""
 
-    //On start of activity, freshActivityOpened is true. Upon the first dismissal of the dialog box, set to false as next time the dialog box will surely have been opened once.
-    var freshActivityOpened = true
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Inflate the layout for this fragment
@@ -91,8 +88,6 @@ class NewPostStory : AppCompatActivity() {
 
         dialog.findViewById<Button>(R.id.btnCancel).setOnClickListener {
             dialog.dismiss()
-            if(freshActivityOpened)
-                finish()    //In starting itself, if person presses cancel, return back to previous activity
         }
 
         dialog.findViewById<LinearLayout>(R.id.layoutTakePicture).setOnClickListener {
@@ -103,10 +98,6 @@ class NewPostStory : AppCompatActivity() {
         dialog.findViewById<ConstraintLayout>(R.id.layoutSelectFromGallery).setOnClickListener {
             pickImageFromGallery()
             dialog.dismiss()
-        }
-
-        dialog.setOnDismissListener {
-            freshActivityOpened = false  //See description at declaration
         }
 
         dialog.show()
