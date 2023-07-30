@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
@@ -45,13 +46,13 @@ class NewPostStory : AppCompatActivity() {
     var imageUserPoster: String = ""
     var nameUserPoster: String = ""
 
+    enum class MODES {POST_MODE, STORY_MODE}
+    private var CurrMode = MODES.POST_MODE
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Inflate the layout for this fragment
         binding = DataBindingUtil.setContentView(this, R.layout.activity_new_post_story)
-
-        //On start of activity, show image choosing options
-        showImageSelectionOptionDialog()
 
         vm = ViewModelProvider(this).get(ViewModel::class.java)
         postid = UUID.randomUUID().toString()
