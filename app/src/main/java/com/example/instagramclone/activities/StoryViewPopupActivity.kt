@@ -21,8 +21,7 @@ class StoryViewPopupActivity : AppCompatActivity() {
         binding = ActivityStoryViewPopupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val list = intent.getSerializableExtra("links") as? ArrayList<String>
-        storyLinksList = ArrayList(list)
+        storyLinksList = (intent.getSerializableExtra("links") as? ArrayList<String>)!!
 
         val wdw = this.window
         wdw.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
@@ -36,9 +35,9 @@ class StoryViewPopupActivity : AppCompatActivity() {
         Glide.with(this).load(storyLinksList!![currstoryidx]).into(binding.imgStoryContent)
         currstoryidx++
 
-        object : CountDownTimer(7000, 10) {
+        object : CountDownTimer(5000, 10) {
             override fun onTick(millisUntilFinished: Long) {
-                binding.pbTime.progress = ((7000-millisUntilFinished) * 100 / 7000).toInt()
+                binding.pbTime.progress = ((5000-millisUntilFinished) * 100 / 5000).toInt()
                 //Toast.makeText(applicationContext, "$millisUntilFinished", Toast.LENGTH_SHORT).show()
             }
 
