@@ -1,5 +1,6 @@
 package com.example.instagramclone.mvvm
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -88,5 +89,27 @@ class ViewModel : ViewModel() {
             }
         }
         return users
+    }
+
+    // get the ids of those who I follow:
+    fun getThePeopleIFollow(callback: (List<String>) -> Unit) {
+        val firestore = FirebaseFirestore.getInstance()
+
+        val ifollowlist = mutableListOf<String>()
+        ifollowlist.add(Utils.getUidLoggedIn())
+
+        firestore.collection("Follow").document(Utils.getUidLoggedIn()).get().addOnSuccessListener { documentSnapshot ->
+            if (documentSnapshot.exists()) {
+                val followingIds = documentSnapshot.get("following_id") as? List<String>
+                val updatedList = followingIds?.toMutableList() ?: mutableListOf()
+
+                ifollowlist.addAll(updatedList)
+
+                Log.d("ListOfPeopleIfollow", ifollowlist.toString())
+                callback(ifollowlist)
+            } else {
+                callback(ifollowlist)
+            }
+        }
     }
 }
