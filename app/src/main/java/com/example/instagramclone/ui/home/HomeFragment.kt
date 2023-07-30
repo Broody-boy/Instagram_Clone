@@ -43,10 +43,11 @@ class HomeFragment : Fragment() {
 
         vm = ViewModelProvider(this).get(ViewModel::class.java)
         adapter_stories = StoriesAdapter()
+        binding.recyclerStories.adapter = adapter_stories
+        binding.recyclerStories.layoutManager= LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+
 
         vm.loadStories().observe(viewLifecycleOwner, Observer {
-            binding.recyclerStories.adapter = adapter_stories
-            binding.recyclerStories.layoutManager= LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
             adapter_stories.setStories(it)
         })
     }
