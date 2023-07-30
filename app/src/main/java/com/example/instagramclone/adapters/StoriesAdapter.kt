@@ -1,6 +1,7 @@
 package com.example.instagramclone.adapters
 
 import android.content.Intent
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.instagramclone.R
 import com.example.instagramclone.activities.StoryViewPopupActivity
 import com.example.instagramclone.databinding.ItemStoryBinding
 import com.example.instagramclone.modal.Story
@@ -32,6 +34,7 @@ class StoriesAdapter : RecyclerView.Adapter<StoryViewHolder>() {
         holder.tvusername.text = currentStory.username
 
         holder.itemView.setOnClickListener {
+            holder.image.borderColor = Color.parseColor("#9f9f9e")
             val intent = Intent(holder.itemView.context, StoryViewPopupActivity::class.java)
             intent.putExtra("links", ArrayList(currentStory.stories_array))
             intent.putExtra("profimg", currentStory.imageposter)
@@ -49,7 +52,7 @@ class StoriesAdapter : RecyclerView.Adapter<StoryViewHolder>() {
 }
 
 class StoryViewHolder(val binding: ItemStoryBinding) : RecyclerView.ViewHolder(binding.root) {
-    val image: ImageView = binding.imgStoryPosterProfilePic
+    val image = binding.imgStoryPosterProfilePic
     val tvusername: TextView = binding.tvStoryPosterUserName
 }
 
