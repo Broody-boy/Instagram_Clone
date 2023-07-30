@@ -19,7 +19,6 @@ class StoryViewPopupActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_story_view_popup)
 
         binding = ActivityStoryViewPopupBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -28,16 +27,23 @@ class StoryViewPopupActivity : AppCompatActivity() {
         profimg = intent.getStringExtra("profimg")
         usrnm = intent.getStringExtra("usrnm")
 
-        val wdw = this.window
-        wdw.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        wdw.statusBarColor = resources.getColor(R.color.black)
+        binding.tvUserName.text = usrnm
+
+        try {
+            val wdw = this.window
+            wdw.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            wdw.statusBarColor = resources.getColor(R.color.black)
+            Glide.with(this).load(profimg).into(binding.imgProf)
+        } catch (e : Exception) { }
 
         setStoryandWait()
     }
 
     private fun setStoryandWait() {
 
-        Glide.with(this).load(storyLinksList!![currstoryidx]).into(binding.imgStoryContent)
+        try {
+            Glide.with(this).load(storyLinksList!![currstoryidx]).into(binding.imgStoryContent)
+        } catch (e : Exception) { }
         currstoryidx++
 
         object : CountDownTimer(5000, 10) {
