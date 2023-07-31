@@ -5,5 +5,6 @@ data class Story (
     val username: String? = "",
     val imageposter: String? = "",
     val stories_array: List<String> = emptyList(),
-    val time: Long? = null,
+    val timeofUpload: List<String> = emptyList(),
+    val timeofCompletion: List<String> = emptyList()
 )
