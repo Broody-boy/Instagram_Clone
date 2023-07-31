@@ -112,7 +112,7 @@ class ViewModel : ViewModel() {
                             }
                         }
 
-                        val sortedStory = story.sortedByDescending { it.time }
+                        val sortedStory = story.sortedByDescending { it.timeofUpload[it.timeofUpload.lastIndex].toLong() }
                         stories.postValue(sortedStory)
                     }
                 }catch (e:Exception){
@@ -129,7 +129,7 @@ class ViewModel : ViewModel() {
         val ifollowlist = mutableListOf<String>()
         ifollowlist.add(Utils.getUidLoggedIn())
 
-        firestore.collection("Follow").document(Utils.getUidLoggedIn()).get().addOnSuccessListener { documentSnapshot ->
+        firestore.collection("Following").document(Utils.getUidLoggedIn()).get().addOnSuccessListener { documentSnapshot ->
             if (documentSnapshot.exists()) {
                 val followingIds = documentSnapshot.get("following_id") as? List<String>
                 val updatedList = followingIds?.toMutableList() ?: mutableListOf()
