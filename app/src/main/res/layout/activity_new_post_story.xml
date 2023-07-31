@@ -17,7 +17,40 @@
             android:src="@drawable/pic3"
             android:scaleType="centerCrop"/>
 
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/btgPostStory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/cvImg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnPost"
+
+            app:singleSelection="true"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnToPost"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/black"
+                app:cornerRadius="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="POST" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnToStory"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/black"
+                app:cornerRadius="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="STORY" />
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
         <androidx.cardview.widget.CardView
+            android:id="@+id/cvImg"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@color/white"
